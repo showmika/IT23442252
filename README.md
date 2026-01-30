@@ -11,12 +11,14 @@ The test suite validates that English text is correctly transliterated into Tami
 ```
 .
 ├── tests/
-│   └── pos.spec.js           # Playwright test file with 2 test cases
-├── playwright.config.js      # Playwright configuration
-├── package.json              # Project dependencies
-├── playwright-report/        # Test reports (generated after test run)
-├── test-results/             # Test results (generated after test run)
-└── README.md                 # This file
+│   ├── TranslateCheck.spec.js  # Functional tests for transliteration
+│   └── Ui.spec.js              # UI tests for real-time transliteration
+├── playwright.config.js        # Playwright configuration
+├── package.json                # Project dependencies
+├── playwright-report/          # HTML test reports (generated after test run)
+├── test-results/               # Test results (generated after test run)
+├── test_results.csv            # CSV file with test results summary
+└── README.md                   # This file
 ```
 
 ## Prerequisites
@@ -33,21 +35,25 @@ npm install
 
 ## Running Tests
 
+### Run all tests in headless mode:
+```bash
+npx playwright test
+```
+
 ### Run tests with browser UI (headed mode):
 ```bash
 npx playwright test --headed
 ```
 
-### Run tests in background (headless mode):
+### Run specific test file:
 ```bash
-npx playwright test
+npx playwright test TranslateCheck.spec.js
+npx playwright test Ui.spec.js
 ```
 
-### Run tests on specific browser:
+### Run tests on specific browser (only Chromium enabled by default):
 ```bash
 npx playwright test --project=chromium
-npx playwright test --project=firefox
-npx playwright test --project=webkit
 ```
 
 ### List all available tests:
@@ -55,41 +61,58 @@ npx playwright test --project=webkit
 npx playwright test --list
 ```
 
-## Test Cases
-
-### Test 1: Pos_Fun_01 - Tamil Transliteration Test
-- **Input:** `Eppidi irukurenga`
-- **Expected Output:** `எப்பிடி இருக்குறீங்க?`
-- **Status:** ✅ PASSING
-
-### Test 2: Pos_Fun_02 - Tamil Transliteration Test
-- **Input:** `Nanga Indaiku maniku hotel povama?`
-- **Expected Output:** `நாங்க இண்டைக்கு மணிக்கு ஹோட்டல் போவமா?`
-- **Status:** ❌ FAILING
-- **Issue:** Output mismatch - received `நாங்க இண்டைக்கு மணிக்கு ஹோட்டல் பாவமா? ` (different character + trailing space)
-
-## Test Results
-
-After running tests, view the HTML report:
+### View test results:
 ```bash
 npx playwright show-report
 ```
 
-## Notes
+## Test Cases
 
-- Tests run on 3 browsers by default: Chromium, Firefox, and WebKit
-- Total of 6 tests (2 test cases × 3 browsers)
-- Each test waits 3 seconds for transliteration to complete
-- Tests include type delay of 100ms for realistic typing
+### TranslateCheck.spec.js
+This file contains functional tests for Tamil transliteration. It performs sequential tests on multiple English sentences to ensure they are correctly transliterated into Tamil script.
 
-## Troubleshooting
+- **Test Name:** Tamil Transliteration - Sequential Tests
+- **Functionality:** 
+  - Navigates to `https://tamil.changathi.com/`
+  - Types each test input word by word with delays to simulate real typing
+  - Waits for the website's AI to perform transliteration
+  - Compares the output against expected Tamil text
+  - Logs pass/fail results in the console with color coding
+- **Test Data:** Array of 35 test cases with English inputs and expected Tamil outputs
+- **Examples:**
+  - Input: "Eppidi Irukurenga?" → Expected: "எப்பிடி இருக்குறீங்க? "
+  - Input: "Naan veeduku pokiren" → Expected: "நான் வீட்டுக்கு போகிறேன் "
 
-### Test 2 Failure
-The second test is failing due to transliteration output mismatch. The website returns a different character variant than expected. Review and update the expected regex pattern if needed.
+### Ui.spec.js
+This file contains UI-focused tests for the transliteration interface.
+
+- **Test Name:** UI_01: Real-time Transliteration & Clear Behavior
+- **Functionality:**
+  - Navigates to the transliteration website
+  - Types a specific English text: "Nanri"
+  - Ensures Tamil mode is activated (tries Ctrl+G if needed)
+  - Validates that the output contains Tamil characters or falls back to English
+  - Tests the clear functionality by emptying the textarea
+- **Expected Output:** "நன்றி" (or English fallback)
+
+## Test Results
+
+Latest test results are stored in `test_results.csv`. After running tests, check the HTML report in `playwright-report/index.html`.
 
 ## Configuration
 
-Browser configuration is defined in `playwright.config.js`. To disable browsers, comment out entries in the `projects` array.
+- **Browser:** Chromium (Firefox and WebKit are commented out in `playwright.config.js`)
+- **Parallel execution:** Enabled
+- **Retries:** 2 on CI, 0 locally
+- **Tracing:** On first retry
+
+To enable additional browsers, uncomment the respective projects in `playwright.config.js`.
+
+## Troubleshooting
+
+- Ensure internet connection for accessing `https://tamil.changathi.com/`
+- Tests may fail if the website's transliteration logic changes
+- Increase timeouts if transliteration is slow
 
 ## Author
 
@@ -97,4 +120,4 @@ IT23442252
 
 ## Last Updated
 
-January 29, 2026
+January 30, 2026
