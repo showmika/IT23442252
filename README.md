@@ -89,11 +89,11 @@ This file contains UI-focused tests for the transliteration interface.
 - **Test Name:** UI_01: Real-time Transliteration & Clear Behavior
 - **Functionality:**
   - Navigates to the transliteration website
-  - Types a specific English text: "Nanri"
+  - Types a specific English text: "Form aa sumbit panna confirmation message display aakum"
   - Ensures Tamil mode is activated (tries Ctrl+G if needed)
   - Validates that the output contains Tamil characters or falls back to English
   - Tests the clear functionality by emptying the textarea
-- **Expected Output:** "நன்றி" (or English fallback)
+- **Expected Output:** "Form ஆ சப்மிட் பண்ண confirmation மெசேஜ் டிஸ்பிலே ஆகும்" (or English fallback)
 
 ## Test Results
 

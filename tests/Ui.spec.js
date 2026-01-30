@@ -45,16 +45,16 @@ test('UI_01: Real-time Transliteration & Clear Behavior', async ({ page }) => {
   await textarea.click();
 
   // 3️⃣ Type text and ensure Tamil mode
-  const inputText = 'Nanri';
+  const inputText = 'Form aa sumbit panna confirmation message display aakum';
   const { finalValue, hasTamil } = await ensureTamilModeAndConvert(page, textarea, inputText);
 
   // 4️⃣ Validate transliteration or fallback
   if (hasTamil) {
     // Tamil detected → validate exact Tamil output
-    await expect(textarea).toHaveValue(/நன்றி/, { timeout: 1000 });
+    await expect(textarea).toHaveValue(/Form ஆ சப்மிட் பண்ண confirmation மெசேஜ் டிஸ்பிலே ஆகும்/, { timeout: 1000 });
   } else {
     // Tamil not detected → validate English fallback
-    await expect(textarea).toHaveValue(/Nanri/, { timeout: 1000 });
+    await expect(textarea).toHaveValue(/Form aa sumbit panna confirmation message display aakum/, { timeout: 1000 });
   }
 
   // 5️⃣ Test Clear behavior

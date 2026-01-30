@@ -23,7 +23,7 @@ test('Tamil Transliteration - Sequential Tests', async ({ page }) => {
   { input: 'Eppidi Irukurenga?', expected: 'எப்பிடி இருக்குறீங்க? ' },
   { input: 'Indaiku velai irukku', expected: 'இண்டைக்கு வேலை இருக்கு ' },
   { input: 'Naan veeduku pokiren', expected: 'நான் வீட்டுக்கு போகிறேன் ' },
-  { input: 'Form aa sumbit panna confirmation message display aakum', expected: 'Form ஆ சப்மிட் பண்ண confirmation மெசேஜ் டிஸ்பிலே ஆகும் ' },
+  { input: 'thankyou friend', expected: 'தங்கியூ friend ' },
   { input: 'Akkakku Monday 10 manikku interview irukku', expected: 'அக்காக்கு Monday 10  மணிக்கு interview இருக்கு ' },
   { input: 'Thambi velaiyada poraan', expected: 'தம்பி விளையாட போறான் ' },
   { input: 'Phone charge aakiddu irukku', expected: 'போன் சார்ஜ் ஆகிட்டு இருக்கு ' },
