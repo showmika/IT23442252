@@ -10,7 +10,7 @@ const colors = {
 async function typeWithSpaces(textarea, sentence) {
   const words = sentence.split(' ');
   for (const word of words) {
-    await textarea.type(word + ' ', { delay: 250 }); // small delay helps AI process
+    await textarea.type(word + ' ', { delay: 350 }); // small delay helps AI process
   }
 }
  
