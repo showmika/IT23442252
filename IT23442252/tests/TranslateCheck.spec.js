@@ -33,8 +33,8 @@ test('Tamil Transliteration - Sequential Tests', async ({ page }) => {
     expected: 'அவன் முயன்றதால் வெற்றி வந்தது ',
   },
   {
-    input: 'Naalaiku exam iruku athukaga ready pannuren',
-    expected: 'நாளைக்கு எக்ஸாம் இருக்கு அதுக்காக ரெடி பண்ணுறேன் ',
+    input: 'Naalaiku nerkaanal iruku athukaga thayar pannuren',
+    expected: 'நாளைக்கு நேர்காணல் இருக்கு அதுக்காக தயார் பண்ணுறேன் ',
   },
   {
     input: 'Nanga ellarum 12 manikku restaurant kku sappida pogalama?',
@@ -83,9 +83,9 @@ test('Tamil Transliteration - Sequential Tests', async ({ page }) => {
 
   {
     input:
-      'Nee thirumba varum varaikum naan inga wait pannuren',
+      'Nee thirumba varum varaikum naan inga kaathu irukken',
     expected:
-      'நீ திரும்ப வரும் வரைக்கும் நான் இங்க வெயிட் பண்ணுறேன் ',
+      'நீ திரும்ப வரும் வரைக்கும் நான் இங்க காத்து இருக்கேன் ',
   },
 
   {
@@ -104,9 +104,9 @@ test('Tamil Transliteration - Sequential Tests', async ({ page }) => {
 
    {
     input:
-      'Enaku udambu sari illaathathaala ennala office ku varamudiyaathu',
+      'Enaku udambu sari illaathathaala ennala Aluvalagam kku varamudiyaathu',
     expected:
-      'எனக்கு உடம்பு சரி இல்லாததால என்னால ஆபீஸ் கு வரமுடியாது ',
+      'எனக்கு உடம்பு சரி இல்லாததால என்னால அலுவலகம் க்கு வரமுடியாது ',
   },
 
   {
@@ -146,9 +146,9 @@ test('Tamil Transliteration - Sequential Tests', async ({ page }) => {
 
   {
     input:
-      'Niraya velai irukirathala ennala indaiku varamudeya naan weekend anga varan',
+      'Niraya velai irukirathala ennala indaiku varamudeya naan vaaraeruthi anga varan',
     expected:
-      'நிறைய வேலை இருக்கிறதால என்னால இண்டைக்கு கிளிநொச்சி வரமுடியா நான் வீகெண்ட்ல அங்க வாறன்  ',
+      'நிறைய வேலை இருக்கிறதால என்னால இண்டைக்கு கிளிநொச்சி வரமுடியா நான் வாரஇறுதி அங்க வாறன்  ',
   },
 
   {
